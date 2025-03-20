@@ -138,5 +138,5 @@ This project is licensed under the MIT License.
 
 - **Nomalungelo Dlamini** - [GitHub Profile](https://github.com/nomaddlamini2024)
 
-For any issues or contributions, feel free to open a pull request or raise an 
-issue! 🚀
+For any issues or contributions, feel free to open a pull request or raise 
+an issue! 🚀
