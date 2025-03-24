@@ -1,26 +1,30 @@
 // Importing required modules
-const chai = require("chai"); // Chai assertion library
-const request = require("request"); // Used to make HTTP requests
-const app = require("../server"); // Importing the Express server
+// Chai assertion library
+const chai = require("chai");
+// Used to make HTTP requests
+const request = require("request");
+// Importing the Express server
+const app = require("../server");
 
-const { expect } = chai; // Extracting expect assertion from Chai
+// Extracting expect assertion from Chai
+const { expect } = chai;
 
-// Test suite for GitHub API Routes
+// Testing suite for GitHub API Routes
 describe("GitHub API Routes", () => {
   // Test case: Search users on GitHub API
   it("Should return search results from GitHub API", function (done) {
-    this.timeout(5000); // Increasing timeout to prevent request failures
+    this.timeout(5000); // Increase timeout to prevent request failures
 
     // Make a GET request to the search endpoint
     request.get("http://localhost:5001/api/github/search?query=octocat", 
       (error, response, body) => {
       // Expect a successful response
-      expect(response.statusCode).to.equal(200); 
-      const data = JSON.parse(body); // Parse JSON response
-      // Expect search results to be an array
-      expect(data.items).to.be.an("array"); 
-      // Marking test as complete
-      done(); 
+      expect(response.statusCode).to.equal(200);
+      // Parsing JSON response
+      const data = JSON.parse(body);
+      // Expecting search results to be an array
+      expect(data.items).to.be.an("array");
+      done(); // Mark test as complete
     });
   });
 
@@ -33,8 +37,10 @@ describe("GitHub API Routes", () => {
       (error, response, body) => {
       expect(response.statusCode).to.equal(200);
       const data = JSON.parse(body);
-      expect(data).to.have.property("user"); // Ensure "user" object exists
-      expect(data).to.have.property("repos"); // Ensure "repos" list exists
+      // Ensuring "user" object exists
+      expect(data).to.have.property("user");
+      // Ensuring "repos" list exists
+      expect(data).to.have.property("repos");
       done();
     });
   });
@@ -47,7 +53,7 @@ describe("GitHub API Routes", () => {
     request.get("http://localhost:5001/api/github/user/invaliduser123456", 
       (error, response, body) => {
       // Expect internal server error
-      expect(response.statusCode).to.equal(500); 
+      expect(response.statusCode).to.equal(500); //
       done();
     });
   });

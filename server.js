@@ -5,17 +5,23 @@ const helmet = require("helmet");
 const dotenv = require("dotenv");
 const githubRoutes = require("./routes/githubRoutes");
 
-dotenv.config(); // Loading environment variables
+// Loading environment variables
+dotenv.config();
 
-const app = express(); // Creating an Express app instance
+// Creating an Express app instance
+const app = express();
 
 // Applying middleware
-app.use(cors()); // Enabling Cross-Origin Resource Sharing
-app.use(express.json()); // Parsing JSON request bodies
-app.use(helmet()); // Improving security by setting HTTP headers
+// Enabling Cross-Origin Resource Sharing
+app.use(cors());
+// Parsing JSON request bodies
+app.use(express.json());
+// Improving security by setting HTTP headers
+app.use(helmet());
 
-// Defining API routes
-app.use("/api/github", githubRoutes); // Mounting GitHub API routes
+// Define API routes
+// Mount GitHub API routes
+app.use("/api/github", githubRoutes);
 
 // Using port from environment or default to 5001
 const PORT = process.env.PORT || 5001;
@@ -23,5 +29,4 @@ const PORT = process.env.PORT || 5001;
 // Starting the server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
-// Exporting app for testing
-module.exports = app;
+module.exports = app; // Export app for testing

@@ -1,11 +1,11 @@
 // Importing required modules
 // Axios for making HTTP requests
-const axios = require("axios"); 
-// Loading environment variables
-require("dotenv").config(); 
+const axios = require("axios");
+// Load environment variables
+require("dotenv").config();
 
 // GitHub API base URL
-const GITHUB_API_URL = process.env.GITHUB_API_URL; 
+const GITHUB_API_URL = process.env.GITHUB_API_URL;
 
 /**
  * Search GitHub users by query
@@ -32,10 +32,9 @@ const searchUsers = async (req, res) => {
 const getUserDetails = async (req, res) => {
   try {
     const { username } = req.params;
-    const userResponse = await axios.get(`${GITHUB_API_URL}`
-      +`/users/${username}`);
-    const reposResponse = await axios.get(`${GITHUB_API_URL}`
-      +`/users/${username}/repos?per_page=5&sort=updated`);
+    const userResponse = await axios.get(`${GITHUB_API_URL}/users/${username}`);
+    const reposResponse = await axios.get(`${GITHUB_API_URL}/users/${username}`
+      +`/repos?per_page=5&sort=updated`);
 
     res.json({ user: userResponse.data, repos: reposResponse.data });
   } catch (error) {
@@ -51,10 +50,10 @@ const getUserDetails = async (req, res) => {
 const getRepoDetails = async (req, res) => {
   try {
     const { username, repo } = req.params;
-    const repoResponse = await axios.get(`${GITHUB_API_URL}`
-      +`/repos/${username}/${repo}`);
-    const commitsResponse = await axios.get(`${GITHUB_API_URL}`
-      +`/repos/${username}/${repo}/commits?per_page=5`);
+    const repoResponse = await axios.get(`${GITHUB_API_URL}/repos` 
+      +`/${username}/${repo}`);
+    const commitsResponse = await axios.get(`${GITHUB_API_URL}/repos` 
+      +`/${username}/${repo}/commits?per_page=5`);
 
     res.json({ repo: repoResponse.data, commits: commitsResponse.data });
   } catch (error) {
